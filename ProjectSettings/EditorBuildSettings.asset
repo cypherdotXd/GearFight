@@ -8,8 +8,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Boggle.unity
-    guid: 343b3075c062a41ff94d1783b4222444
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

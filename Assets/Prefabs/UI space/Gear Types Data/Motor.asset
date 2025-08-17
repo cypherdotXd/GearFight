@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23857f48f4dbf4f6f8a6a114a2f67588, type: 3}
-  m_Name: Gear 4+
+  m_Script: {fileID: 11500000, guid: 2f3d51aad2c7c42dcbc20edbc33a27a8, type: 3}
+  m_Name: Motor
   m_EditorClassIdentifier: 
-  isMultiplier: 0
-  value: 1

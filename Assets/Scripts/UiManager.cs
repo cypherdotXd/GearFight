@@ -9,10 +9,7 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] private GameObject endScreen;
-    [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text highScoreText;
-    [SerializeField] private TMP_Text warningText;
-    [SerializeField] private Button homeButton;
+    [SerializeField] private Button reloadButton;
     
     public static UiManager Instance;
 
@@ -26,41 +23,18 @@ public class UiManager : MonoBehaviour
     
     private void OnEnable()
     {
-        LevelManager.Warn += OnWarn;
-        LevelManager.ScoreChanged += UpdateScore;
+        reloadButton.onClick.AddListener(ReloadGame);
         LevelManager.LevelCompleted += ShowEndScreen;
     }
 
     private void OnDisable()
     {
-        LevelManager.Warn -= OnWarn;
-        LevelManager.ScoreChanged -= UpdateScore;
+        reloadButton.onClick.RemoveListener(ReloadGame);
         LevelManager.LevelCompleted -= ShowEndScreen;
     }
 
     private void Start()
     {
-        UpdateHighScore(LevelManager.HighScore);
-    }
-
-    private void OnWarn(string warning)
-    {
-        Warn(warning, 2);
-    }
-
-    public void Warn(string warning, float time)
-    {
-        if(_warningRoutine != null)
-            StopCoroutine(_warningRoutine);
-        _warningRoutine = StartCoroutine(ShowWarningRoutine(warning, time));
-    }
-
-    private IEnumerator ShowWarningRoutine(string warning, float duration)
-    {
-        warningText.text = warning;
-        warningText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(duration);
-        warningText.gameObject.SetActive(false);
     }
 
     private void ReloadGame()
@@ -73,14 +47,5 @@ public class UiManager : MonoBehaviour
         DOVirtual.DelayedCall(1, () => endScreen.SetActive(true));
     }
 
-    private void UpdateHighScore(int score)
-    {
-        // highScoreText.text = score.ToString();
-    }
-
-    private void UpdateScore(int score)
-    {
-        scoreText.text = score.ToString();
-    }
 
 }

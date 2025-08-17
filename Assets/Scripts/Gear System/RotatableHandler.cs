@@ -1,31 +1,18 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class RotatableHandler : MonoBehaviour
 {
-    
-    public event Action<RotatableHandler> GearPositionChanged;
+    public static event Action<RotatableHandler, bool> ActiveChanged; 
     public Transform gearTransform;
-    public Rotatable Rotatable;
+    public Rotatable Rotatable { get; private set; }
     
-    private Draggable draggable;
+    [SerializeField] private Rotatable_SO rotatableData;
     private Vector3 targetRotation;
 
     private void Awake()
     {
-        Rotatable = Instantiate(Rotatable);
-        draggable = GetComponent<Draggable>();
-    }
-    
-    private void OnEnable()
-    {
-        draggable.OnDrop += OnDrop;
-    }
-
-    private void OnDisable()
-    {
-        draggable.OnDrop -= OnDrop;
+        Rotatable = rotatableData.CreateRotatable();
     }
 
     private void Update()
@@ -33,16 +20,14 @@ public class RotatableHandler : MonoBehaviour
         gearTransform.rotation = Quaternion.Lerp(gearTransform.rotation, Quaternion.Euler(targetRotation), Time.deltaTime * 10f);
     }
 
-    private void OnDrop(bool slotted)
+    public void SetGearActive(bool active)
     {
-        if (!slotted) return;
-        GearPositionChanged?.Invoke(this);
+        ActiveChanged?.Invoke(this, active);
     }
 
     public void RotateSteps(int steps)
     {
         targetRotation = new Vector3(0, 0, steps * -22.5f);
-        
     }
 
     public void UpdateRotatable(Vector2Int gridPosition)

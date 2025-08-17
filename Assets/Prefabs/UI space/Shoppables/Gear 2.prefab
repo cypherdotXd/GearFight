@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8034b19b0d9f44c51bf56efe2c6f2cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotatableData: {fileID: 11400000, guid: ae8497875ea3441e39a28a7cadf00701, type: 2}
   gearTransform: {fileID: 8483607295725643308}
-  Rotatable: {fileID: 11400000, guid: b2022dd69bb6248438f706a2b1ecad47, type: 2}
 --- !u!114 &922971613743236210
 MonoBehaviour:
   m_ObjectHideFlags: 0

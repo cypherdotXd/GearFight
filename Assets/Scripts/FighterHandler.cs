@@ -9,10 +9,9 @@ using Random = UnityEngine.Random;
 public class FighterHandler : MonoBehaviour
 {
     public UnityEvent OnDeath;
-    [Range(0, 1)]
-    public float agility = 10;
-    [Range(1, 100)]
-    public float attackDamage = 10;
+    public UnityEvent OnKill;
+    [Range(0, 1)] public float agility = 10;
+    [Range(1, 100)] public float attackDamage = 10;
     public float speed = 1;
     public float health = 100;
     public Rigidbody2D rb;
@@ -22,6 +21,7 @@ public class FighterHandler : MonoBehaviour
     
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private SpriteFill healthFill;
+    
     private Vector2 targetVelocity;
     private Sequence attackSequence;
     private Sequence damageSequence;
@@ -88,10 +88,12 @@ public class FighterHandler : MonoBehaviour
             .Append(transform.DORotate(defaultRotation + new Vector3(0, 0, dir * 15f), 0.05f))
             .Append(transform.DORotate(defaultRotation + new Vector3(0, 0, -dir * 45f), 0.1f))
             .Append(transform.DORotate(defaultRotation, 0.1f));
-        other.TakeDamage(this);
+        var dead = other.TakeDamage(this);
+        if (dead)
+            OnKill?.Invoke();
     }
 
-    private void TakeDamage(FighterHandler other)
+    private bool TakeDamage(FighterHandler other)
     {
         health -= other.attackDamage;
         if (health <= 0)
@@ -101,9 +103,10 @@ public class FighterHandler : MonoBehaviour
             attackSequence?.Kill(true);
             damageSequence?.Kill(true);
             Destroy(gameObject);
-            return;
+            return true;
         }
         healthFill.SetFill(health / 100f, 0.2f);
         damageSequence.Restart();
+        return false;
     }
 }

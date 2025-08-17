@@ -36,16 +36,15 @@ public class GearsGridSimulator
         }
     }
 
-    public void UpdateGrid(Rotatable rotatable, Vector2Int oldPosition)
+    public void UpdateGrid(Rotatable rotatable, Vector2Int? oldPosition = null)
     {
+        if (oldPosition != null)
+        {
+            var old = oldPosition.Value;
+            Grid[old.y, old.x] = null;
+        }
         var newPosition = rotatable.Position;
-        Grid[oldPosition.y, oldPosition.x] = null;
         Grid[newPosition.y, newPosition.x] = rotatable;
-    }
-
-    public void AddToGrid(Rotatable rotatable, Vector2Int position)
-    {
-        Grid[position.y, position.x] = rotatable;
     }
     
     public IEnumerator MoveStep(float stepDuration = 0.1f)

@@ -347,8 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8034b19b0d9f44c51bf56efe2c6f2cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotatableData: {fileID: 11400000, guid: ae078825586b84ea49f4232969bef18e, type: 2}
   gearTransform: {fileID: 5643149250438567067}
-  Rotatable: {fileID: 11400000, guid: ae078825586b84ea49f4232969bef18e, type: 2}
 --- !u!114 &5807796957320162250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,7 +375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thresholdText: {fileID: 3786468022763310195}
   spawnPrefab: {fileID: 2791283085903181018, guid: 0569608f03f784188b943f4da41fcd91, type: 3}
-  spawnThreshold: 0.48
   spriteFill: {fileID: 1476164594828403529}
 --- !u!1 &6035475853144200251
 GameObject:

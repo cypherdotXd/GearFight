@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class GearSpawnable : MonoBehaviour
 {
-    public Rotatable GearRotatable => rotatableHandler.Rotatable;
-    
     [SerializeField] private TMP_Text thresholdText;
     [SerializeField] private GameObject spawnPrefab;
     [SerializeField] private Image spriteFill;
@@ -18,7 +16,7 @@ public class GearSpawnable : MonoBehaviour
     private RotatableHandler rotatableHandler;
     private float chainValue;
     private float baseThreshold => 0.21f;
-    private float spawnThreshold => chainValue > 0 ? baseThreshold + chainValue : baseThreshold;
+    private float spawnThreshold => chainValue > 0 ? baseThreshold + chainValue : 0;
     private float stepsAccumulator;
 
     private void Awake()
@@ -29,12 +27,12 @@ public class GearSpawnable : MonoBehaviour
 
     private void OnEnable()
     {
-        GearRotatable.StepChanged += Spawn;
+        Rotatable.StepChanged += Spawn;
     }
 
     private void OnDisable()
     {
-        GearRotatable.StepChanged -= Spawn;
+        Rotatable.StepChanged -= Spawn;
     }
 
     private void Start()
@@ -47,20 +45,23 @@ public class GearSpawnable : MonoBehaviour
         chainValue = newThreshold;
         thresholdText.text = spawnThreshold.ToString("F2");
     }
-
-    private void Spawn(int steps)
+    
+    private void Spawn(Rotatable rotatable)
     {
+        if (rotatableHandler.Rotatable != rotatable)
+            return;
         stepsAccumulator += spawnThreshold;
-        spriteFill.DOFillAmount(stepsAccumulator / spawnThreshold, 0.1f);
+        spriteFill.DOFillAmount(stepsAccumulator, 0.1f);
         if(stepsAccumulator < 1)
             return;
-        stepsAccumulator -= 1;
-        spriteFill.DOFillAmount(0, 0.1f);
-        var rt = (RectTransform)transform;
-        var parentRt = (RectTransform)transform.parent;
-        var point = Camera.main.ScreenToWorldPoint(rt.position);
-        point.z = 0;
-        Instantiate(spawnPrefab, point, Quaternion.identity);
+        for (int i = 0; i < Mathf.FloorToInt(stepsAccumulator); i++)
+        {
+            stepsAccumulator -= 1;
+            var rt = (RectTransform)transform;
+            var point = Camera.main.ScreenToWorldPoint(rt.position);
+            point.z = 0;
+            Instantiate(spawnPrefab, point, Quaternion.identity);
+        }
     }
 
 }

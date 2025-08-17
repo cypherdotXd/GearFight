@@ -5132,10 +5132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endScreen: {fileID: 444149835}
-  scoreText: {fileID: 0}
-  highScoreText: {fileID: 973109330}
-  warningText: {fileID: 0}
-  homeButton: {fileID: 1536504564}
+  reloadButton: {fileID: 1258962340}
 --- !u!1 &1569407723
 GameObject:
   m_ObjectHideFlags: 0
@@ -5411,8 +5408,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
   agility: 0.6
-  attackDamage: 12
+  attackDamage: 16
   speed: 1
   health: 100
   rb: {fileID: 1631602539}

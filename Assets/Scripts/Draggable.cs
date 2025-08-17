@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 public class Draggable :MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public event Action OnPickUp;
-    public event Action<bool> OnDrop;
     
     private SlotsPlacer slotsPlacer;
     private Vector3 startPosition;
@@ -41,7 +40,6 @@ public class Draggable :MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         var valid = slotsPlacer.NotifyDrop(this);
-        OnDrop?.Invoke(valid);
         if (valid)
             return;
         transform.DOMove(startPosition, 0.2f);

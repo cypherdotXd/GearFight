@@ -26,8 +26,9 @@ public class GearsShopManager : MonoBehaviour
             var rI = Random.Range(0, shoppables.Count);
             var slot = Instantiate(slotPrefab, shoppablesParent).transform;
             var go = Instantiate(shoppables[rI], slot);
+            go.name = "slot" + rI;
             gearsGridManager.RegisterGear(go);
-            gearsGridManager.RegisterSlot(slot);
+            GearsGridManager.RegisterSlot(slot);
         }
     }
 }

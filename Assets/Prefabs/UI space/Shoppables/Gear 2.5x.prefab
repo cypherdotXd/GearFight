@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 922971613743236210}
   - component: {fileID: 8955998155317210967}
   m_Layer: 5
-  m_Name: Gear 1.25x
+  m_Name: Gear 2.5x
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8034b19b0d9f44c51bf56efe2c6f2cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatableData: {fileID: 11400000, guid: b1b96aa82a0854111ba2e276973d8343, type: 2}
   gearTransform: {fileID: 8483607295725643308}
+  rotatableData: {fileID: 11400000, guid: c6c0d86c03d83495fa302d15265b46f9, type: 2}
 --- !u!114 &922971613743236210
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -124,6 +124,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
   agility: 0
   attackDamage: 4
   speed: 1

@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "Gears/Default")]
-public class Rotatable : ScriptableObject
+public class Rotatable
 {
-    public event Action<int> StepChanged;
+    public static event Action<Rotatable> StepChanged;
     public int Steps
     {
         get => steps;
@@ -28,7 +25,7 @@ public class Rotatable : ScriptableObject
     public void RotateSteps(int stepsCount)
     {
         Steps += stepsCount * Direction;
-        StepChanged?.Invoke(steps);
+        StepChanged?.Invoke(this);
     }
 
     private static int Nfmod(int a, int b)
