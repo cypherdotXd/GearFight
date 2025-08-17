@@ -11,11 +11,11 @@ public class GearSpawnable : MonoBehaviour
     [SerializeField] private TMP_Text thresholdText;
     [SerializeField] private GameObject spawnPrefab;
     [SerializeField] private Image spriteFill;
+    [SerializeField] private float baseThreshold;
     
 
     private RotatableHandler rotatableHandler;
     private float chainValue;
-    private float baseThreshold => 0.21f;
     private float spawnThreshold => chainValue > 0 ? baseThreshold + chainValue : 0;
     private float stepsAccumulator;
 

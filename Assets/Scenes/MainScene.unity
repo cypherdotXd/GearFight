@@ -2465,11 +2465,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoppables:
-  - {fileID: 5523855686278231211, guid: 3f19c4561b3154bf8b8548a7332870e6, type: 3}
-  - {fileID: 5523855686278231211, guid: 15aa0f4d9b6a34e1aa4e6d6c37c378ee, type: 3}
   - {fileID: 5523855686278231211, guid: 23e1d9bdc272d4bd893963c6fb192d75, type: 3}
+  - {fileID: 5523855686278231211, guid: 15aa0f4d9b6a34e1aa4e6d6c37c378ee, type: 3}
+  - {fileID: 5523855686278231211, guid: a5cb5dc447867425095d343cc60d9de4, type: 3}
+  - {fileID: 5523855686278231211, guid: 3f19c4561b3154bf8b8548a7332870e6, type: 3}
   - {fileID: 5523855686278231211, guid: 4aced04a0bace4036a5dc1cdd12047da, type: 3}
   - {fileID: 5523855686278231211, guid: d61b4d630998444cda31ebb2b9636813, type: 3}
+  - {fileID: 5670809197913684402, guid: 5cc747f9c2f4a4c4386c9bcae1f54714, type: 3}
   shoppablesParent: {fileID: 1196325905}
   slotPrefab: {fileID: 8025233394558093196, guid: e257328f20170418c887a7b53380ade6, type: 3}
   shoppablesLayout: {fileID: 1196325907}
