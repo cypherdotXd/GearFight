@@ -27,7 +27,8 @@ public class CombatManager : MonoBehaviour
 
     private void SetNextTarget()
     {
-        if(spawnQueue.Count < 0) return;
+        isTargetSet = false;
+        if(spawnQueue.Count == 0) return;
         isTargetSet = true;
         print($"new target");
         var fighter = spawnQueue.Dequeue();

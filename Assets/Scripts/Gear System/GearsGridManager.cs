@@ -36,9 +36,13 @@ public class GearsGridManager : MonoBehaviour
         
         _slotsPlacer.OnDrop += OnGearDrop;
         
-        var motor = Instantiate(motorPrefab, slots[0]);
-        motor.name = "motor";
-        RegisterGear(motor);
+        var motor1 = Instantiate(motorPrefab, slots[0]);
+        motor1.name = "motor1";
+        RegisterGear(motor1);
+        
+        var motor2 = Instantiate(motorPrefab, slots[7]);
+        motor2.name = "motor2";
+        RegisterGear(motor2);
         
         var spawner = Instantiate(spawnerPrefab, slots[3]);
         spawner.name = "spawner";
@@ -50,10 +54,10 @@ public class GearsGridManager : MonoBehaviour
 
     public void RegisterGear(GameObject gear)
     {
+        if (!gear.TryGetComponent(out RotatableHandler gearHandler)) return;
+        UpdateGrid(gearHandler);
         if (!gear.TryGetComponent(out Draggable draggable)) return;
         draggable.SetSlotsPlacer(_slotsPlacer);
-        if (!draggable.TryGetComponent(out RotatableHandler gearHandler)) return;
-        UpdateGrid(gearHandler);
     }
 
     public static void RegisterSlot(Transform slot)
@@ -63,8 +67,9 @@ public class GearsGridManager : MonoBehaviour
     
     public void StartSimulation()
     {
-        foreach (var (_, handler) in _gears)
+        foreach (var (p, handler) in _gears)
         {
+            print($"gear {p}");
             if(!handler.TryGetComponent(out Draggable draggable)) continue;
             draggable.enabled = false;
         }
@@ -130,8 +135,7 @@ public class GearsGridManager : MonoBehaviour
         SetSpawnerValues();
         while(gameObject.activeInHierarchy)
         {
-            yield return gearsGridSimulator.MoveStep();
-            yield return new WaitForSeconds(0.08f);
+            yield return gearsGridSimulator.MoveStep(0.08f);
         }
         gearsGridSimulator.OnRotatableStep -= Rotate;
     }
@@ -176,11 +180,9 @@ public class GearsGridManager : MonoBehaviour
             gearsGridSimulator.Traverse(motorRotatable, (p, rotatable) =>
             {
                 _gears[p].SetGearActive(true);
-                if (!_gears[p].TryGetComponent(out GearSpawnable spawnable))
-                    return;
-                spawnable.SetChainValue(value/16f);
+                if (_gears[p].TryGetComponent(out GearSpawnable spawnable))
+                    spawnable.SetChainValue(value/16f);
             }, new HashSet<Vector2Int>());
-            return;
         }
     }
 }

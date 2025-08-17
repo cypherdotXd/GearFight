@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class GearsGridSimulator
@@ -73,12 +74,11 @@ public class GearsGridSimulator
         var neighbors = GetNeighbors(source.x, source.y);
         foreach (var (p, neighbor) in neighbors)
         {
-            var gearContact = rotatable is not MotorRotatable;
-            var motorContact = (rotatable.Steps % 4 == 0 || rotatable.Steps % 4 == 3) &&
-            MakesContact(rotatable.Steps, source, p);
-            var contact = gearContact || motorContact;
+            if(neighbor is MotorRotatable) continue;
+            var contact = rotatable is not MotorRotatable 
+                          || ((rotatable.Steps % 4 == 0 || rotatable.Steps % 4 == 3) && MakesContact(rotatable.Steps, source, p));
             if(!contact) continue;
-            yield return Simulate(neighbor, duration * 0.5f, simulated);
+            yield return Simulate(neighbor, duration, simulated);
         }
         yield return new WaitForSeconds(duration);
     }
