@@ -194,14 +194,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8975771103083735600, guid: 205cb1a9dee8740dcb4ffaa1ea7be030, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 205cb1a9dee8740dcb4ffaa1ea7be030, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -376,7 +376,7 @@ MonoBehaviour:
   thresholdText: {fileID: 3786468022763310195}
   spawnPrefab: {fileID: 2791283085903181018, guid: 0defb5b517e85460084ea036e613d8a0, type: 3}
   spriteFill: {fileID: 1476164594828403529}
-  baseThreshold: 0.1
+  baseThreshold: 0.05
 --- !u!1 &6035475853144200251
 GameObject:
   m_ObjectHideFlags: 0

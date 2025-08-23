@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8975771103083735600, guid: 205cb1a9dee8740dcb4ffaa1ea7be030, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 205cb1a9dee8740dcb4ffaa1ea7be030, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -319,8 +319,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4765422507943964103}
   - {fileID: 8483607295725643308}
+  - {fileID: 4765422507943964103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8034b19b0d9f44c51bf56efe2c6f2cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotatableData: {fileID: 11400000, guid: ae078825586b84ea49f4232969bef18e, type: 2}
   gearTransform: {fileID: 8483607295725643308}
+  rotatableData: {fileID: 11400000, guid: ae078825586b84ea49f4232969bef18e, type: 2}
 --- !u!114 &922971613743236210
 MonoBehaviour:
   m_ObjectHideFlags: 0
